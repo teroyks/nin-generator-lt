@@ -1,0 +1,15 @@
+{
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "deno.enable": true,
+    "deno.import_map": "./import_map.json",
+    "editor.formatOnSave": true,
+    "deno.lint": true,
+    "deno.unstable": true,
+    "deno.import_intellisense_origins": {
+        "https://deno.land": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "denoland.vscode-deno",
+    }
+}
