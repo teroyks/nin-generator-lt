@@ -18,14 +18,53 @@ Deno.test("birthdate in a fixed year", () => {
 });
 
 Deno.test("birthdate with default parameters", () => {
-  assert(birthDate().getFullYear() >= 1900);
+  const firstDayOfNextYear = new Date(new Date().getFullYear() + 1, 0, 1);
+
+  testProperty(
+    birthDate,
+    [
+      (bd: Date) => bd.getFullYear() >= 1900,
+      (bd: Date) => bd < firstDayOfNextYear,
+    ],
+  );
 });
 
 Deno.test("serial number", () => {
-  assert(serialNumber() >= 100);
-  assert(serialNumber() <= 999);
+  testProperty(
+    serialNumber,
+    [
+      (x: number) => (x) >= 100,
+      (x: number) => (x) <= 999,
+    ],
+  );
 });
 
 Deno.test("gender", () => {
-  assert(gender() in [0, 1]);
+  testProperty(
+    gender,
+    [(x: number) => [0, 1].includes(x)],
+  );
 });
+
+/**
+ * Run crude property-based tests.
+ * 
+ * @param generatorFn Function that generates the test value
+ * @param conditions List of test functions to run on the test value
+ * @param iterations How many test values to generate
+ */
+function testProperty<TestValueType>(
+  generatorFn: () => TestValueType,
+  conditions: ((x: TestValueType) => boolean)[],
+  iterations = 10000,
+) {
+  for (const _ of Array(iterations)) {
+    const testVal = generatorFn();
+    for (const condFn of conditions) {
+      assert(
+        condFn(testVal),
+        `Value ${testVal} does not match condition ${condFn}`,
+      );
+    }
+  }
+}
