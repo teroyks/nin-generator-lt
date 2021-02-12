@@ -27,7 +27,7 @@ export const calculateG = (year: number, gender: Gender): number =>
  * 
  * @param code The first 10 digits of the NIN
  */
-export function ltNINChecksum(code: string): number {
+export function checksum(code: string): number {
   var b = 1, c = 3, d = 0, e = 0, i, digit;
   for (i = 0; i < 10; i++) {
     digit = parseInt(code[i]);
