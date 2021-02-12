@@ -11,6 +11,15 @@ export enum Gender {
 }
 
 /**
+ * Calculate the gender & birth century value.
+ * 
+ * @param year Birth year (full year, four digits)
+ * @param gender 
+ */
+export const calculateG = (year: number, gender: Gender): number =>
+  Math.floor(year / 100) * 2 - 34 - gender;
+
+/**
  * Calculate the NIN checksum.
  * 
  * See https://en.wikipedia.org/wiki/National_identification_number#Lithuania
