@@ -1,6 +1,7 @@
 /**
  * Generates random properties for the person.
  */
+import { Gender } from "./lt-nin-rules.ts";
 
 const yearMin = 2019;
 const yearMax = new Date().getFullYear();
@@ -30,3 +31,15 @@ export const birthDate = (
  * Generate a three-digit random number.
  */
 export const serialNumber = () => randomNumber(100, 999);
+
+/**
+ * Generate a random gender value.
+ */
+export const gender = (): number => {
+  const values: number[] = Object.values(Gender)
+    .filter((n) => Number.isInteger(n))
+    .map((n) => n as number + 0);
+  const index = randomNumber(0, values.length - 1);
+
+  return values[index];
+};

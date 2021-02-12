@@ -1,5 +1,10 @@
 import { assert, assertEquals } from "asserts";
-import { birthDate, serialNumber, year } from "../src/property-generator.ts";
+import {
+  birthDate,
+  gender,
+  serialNumber,
+  year,
+} from "../src/property-generator.ts";
 
 Deno.test("year is calculated correctly", () => {
   assert(year() >= 1900);
@@ -19,4 +24,8 @@ Deno.test("birthdate with default parameters", () => {
 Deno.test("serial number", () => {
   assert(serialNumber() >= 100);
   assert(serialNumber() <= 999);
+});
+
+Deno.test("gender", () => {
+  assert(gender() in [0, 1]);
 });
