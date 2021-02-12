@@ -3,11 +3,11 @@
  */
 import { Gender } from "./lt-nin-rules.ts";
 
-const yearMin = 2019;
+const yearMin = 1900;
 const yearMax = new Date().getFullYear();
 
-const randomNumber = (min: number, max: number): number =>
-  Math.floor(Math.random()) * (max - min + 1) + min;
+const randomNumber = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
 
 /**
  * Generate a random four-digit year.
