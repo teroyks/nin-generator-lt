@@ -20,7 +20,7 @@ Deno.test("birthdate in a fixed year", () => {
 Deno.test("birthdate with default parameters", () => {
   const firstDayOfNextYear = new Date(new Date().getFullYear() + 1, 0, 1);
 
-  testProperty(
+  testRandomProperty(
     birthDate,
     [
       (bd: Date) => bd.getFullYear() >= 1900,
@@ -30,7 +30,7 @@ Deno.test("birthdate with default parameters", () => {
 });
 
 Deno.test("serial number", () => {
-  testProperty(
+  testRandomProperty(
     serialNumber,
     [
       (x: number) => (x) >= 100,
@@ -40,22 +40,28 @@ Deno.test("serial number", () => {
 });
 
 Deno.test("gender", () => {
-  testProperty(
+  testRandomProperty(
     gender,
     [(x: number) => [0, 1].includes(x)],
   );
 });
 
 /**
- * Run crude property-based tests.
+ * Define a test for a property value.
+ * @returns boolean on test success
+ */
+type TestFn<ValueType> = (x: ValueType) => boolean;
+
+/**
+ * Automate tests on functions that produce random results.
  * 
  * @param generatorFn Function that generates the test value
  * @param conditions List of test functions to run on the test value
  * @param iterations How many test values to generate
  */
-function testProperty<TestValueType>(
+function testRandomProperty<TestValueType>(
   generatorFn: () => TestValueType,
-  conditions: ((x: TestValueType) => boolean)[],
+  conditions: TestFn<TestValueType>[],
   iterations = 10000,
 ) {
   for (const _ of Array(iterations)) {
