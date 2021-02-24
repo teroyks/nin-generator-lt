@@ -1,7 +1,5 @@
 {
   "imports": {
-    "asserts": "https://deno.land/std/testing/asserts.ts",
-    "datetime/": "https://deno.land/std@0.86.0/datetime/",
-    "testing/": "https://deno.land/std/testing/"
+    "asserts": "https://deno.land/std/testing/asserts.ts"
   }
 }

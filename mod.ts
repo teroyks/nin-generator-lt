@@ -3,7 +3,7 @@
  * 
  * Outputs a valid random nin when called.
  */
-import { format } from "datetime/mod.ts";
+import { format } from "./deps.ts";
 import { calculateG, checksum } from "./src/lt-nin-rules.ts";
 import { birthDate, gender, serialNumber } from "./src/property-generator.ts";
 
