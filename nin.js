@@ -2,7 +2,7 @@ const importMeta = {
     url: "file:///Users/tero/dev/nin-generator-lt/main.ts",
     main: import.meta.main
 };
-const doc = `\nNational Identification Number Generator\n\nUsage:\n  ${importMeta.url} [--year=<yyyy>]\n\nOptions:\n  -y --year=<yyyy> Birth year (default: random)\n`;
+const doc = `\nNational Identification Number Generator\n\nUsage:\n  ${importMeta.url} [-v] [--year=<yyyy>]\n\nOptions:\n  -h --help        Show this screen\n  -v --verbose     Print more info about the NIN\n  -y --year=<yyyy> Birth year (default: random)\n`;
 const processArgv = ()=>typeof Deno !== "undefined" && Deno.args || typeof process !== "undefined" && process.argv.slice(2) || []
 ;
 const uniqueMap = (arr)=>{
@@ -1465,20 +1465,25 @@ function calculateMonthsDifference(bigger, smaller) {
     const months = compareResult * (calendarDifferences - isLastMonthNotFull);
     return months === 0 ? 0 : months;
 }
-function generateNIN(year) {
+function generateNIN(year, verbose) {
     const bdArg = year ? {
         firstYear: year,
         lastYear: year
     } : {
     };
     const bd = birthDate(bdArg);
-    const identificationNumber = calculateG(bd.getFullYear(), gender()).toString() + format(bd, "yyMMdd") + serialNumber().toString();
+    const gd = gender();
+    if (verbose) {
+        console.log(`Birth date: ${format(bd, "yyyy-MM-dd")}\n`, `   Gender: ${Gender[gd]}\n`);
+    }
+    const identificationNumber = calculateG(bd.getFullYear(), gd).toString() + format(bd, "yyMMdd") + serialNumber().toString();
     return identificationNumber + checksum(identificationNumber);
 }
 try {
     const args = docopt(doc);
     const year = typeof args["--year"] === "string" ? parseInt(args["--year"]) || null : null;
-    console.log(generateNIN(year));
+    const verbose = args["--verbose"] == true;
+    console.log(generateNIN(year, verbose));
 } catch (e) {
     console.error(e.message);
 }
