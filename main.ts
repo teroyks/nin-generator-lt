@@ -8,6 +8,7 @@ Usage:
   ${import.meta.url} [--year=<yyyy>]
 
 Options:
+  -h --help        Show this screen
   -y --year=<yyyy> Birth year (default: random)
 `;
 
