@@ -5,10 +5,11 @@ const doc = `
 National Identification Number Generator
 
 Usage:
-  ${import.meta.url} [--year=<yyyy>]
+  ${import.meta.url} [-v] [--year=<yyyy>]
 
 Options:
   -h --help        Show this screen
+  -v --verbose     Print more info about the NIN
   -y --year=<yyyy> Birth year (default: random)
 `;
 
@@ -19,8 +20,9 @@ try {
   const year: Year = typeof args["--year"] === "string"
     ? parseInt(args["--year"]) || null
     : null;
+  const verbose = args["--verbose"] == true; // convert Value to boolean
 
-  console.log(generateNIN(year));
+  console.log(generateNIN(year, verbose));
 } catch (e) {
   console.error(e.message);
 }
