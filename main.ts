@@ -5,7 +5,7 @@ const doc = `
 National Identification Number Generator
 
 Usage:
-  ${import.meta.url} [-v] [--year=<yyyy>]
+  nin [-v] [--year=<yyyy>]
 
 Options:
   -h --help        Show this screen
