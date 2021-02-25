@@ -1,8 +1,4 @@
-const importMeta = {
-    url: "file:///Users/tero/dev/nin-generator-lt/main.ts",
-    main: import.meta.main
-};
-const doc = `\nNational Identification Number Generator\n\nUsage:\n  ${importMeta.url} [-v] [--year=<yyyy>]\n\nOptions:\n  -h --help        Show this screen\n  -v --verbose     Print more info about the NIN\n  -y --year=<yyyy> Birth year (default: random)\n`;
+const doc = `\nNational Identification Number Generator\n\nUsage:\n  nin [-v] [--year=<yyyy>]\n\nOptions:\n  -h --help        Show this screen\n  -v --verbose     Print more info about the NIN\n  -y --year=<yyyy> Birth year (default: random)\n`;
 const processArgv = ()=>typeof Deno !== "undefined" && Deno.args || typeof process !== "undefined" && process.argv.slice(2) || []
 ;
 const uniqueMap = (arr)=>{

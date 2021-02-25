@@ -9,3 +9,7 @@
 - Add `-y` flag to set the birth year
 - Add `-v` flag to show more info about the number generated
 - Add `-h` flag to output script options
+
+## 2021-02- v1.1.1
+
+- Update usage info script name
