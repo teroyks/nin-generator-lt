@@ -8,6 +8,8 @@ Generates a valid Lithuanian [national identification number](https://en.wikiped
 deno run https://raw.githubusercontent.com/teroyks/nin-generator-lt/v1.1.1/nin.js
 ```
 
+`-h` displays available options.
+
 ### Local Installation
 
 You can install a local alias that will execute the script for you:
